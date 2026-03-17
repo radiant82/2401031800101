@@ -64,22 +64,10 @@ body {
   gap: 0.6rem;
 }
 
-.brand-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  background: linear-gradient(135deg, var(--accent-blue), var(--accent-violet));
-  border-radius: var(--radius-sm);
-  font-size: 1.1rem;
-  box-shadow: var(--shadow-glow-b);
-}
-
 .brand-name {
   font-size: 1.2rem;
   font-weight: 700;
-  background: linear-gradient(90deg, var(--accent-blue), var(--accent-violet));
+  background: var(--accent-blue);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -291,7 +279,7 @@ body {
 }
 
 .btn-add:hover {
-  background: #1d4ed8;        /* one stop darker — no brightness filter */
+  background: #1d4ed8; /* one stop darker — no brightness filter */
   transform: translateY(-1px);
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.1) inset,
@@ -299,7 +287,7 @@ body {
 }
 
 .btn-add:active {
-  background: #1e40af;        /* pressed: darkest stop */
+  background: #1e40af; /* pressed: darkest stop */
   transform: translateY(0);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
 }
@@ -478,7 +466,6 @@ body {
 .budget-field {
   flex: 1;
   min-width: 0;
-  /* allows field to shrink below intrinsic size, yielding space to the button */
   background: transparent;
   border: none;
   color: var(--text-primary);
@@ -494,15 +481,13 @@ body {
 
 .btn-save {
   flex-shrink: 0;
-  /* never let the button collapse when the container narrows */
   white-space: nowrap;
-  /* prevent text wrapping that would break button height */
-  background: var(--accent-blue);
+  background: var(--accent-violet);
   color: #fff;
   border: none;
   border-radius: var(--radius-sm);
-  padding: 0.5rem 1rem;
-  font-size: 0.82rem;
+  padding: 0.3125rem 0.625rem;
+  font-size: 0.75rem;
   font-weight: 600;
   cursor: pointer;
   transition: var(--transition);
