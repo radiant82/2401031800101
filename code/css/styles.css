@@ -266,11 +266,14 @@ body {
   cursor: pointer;
 }
 
+/* Primary CTA — Blueprint Blue, no gradient
+   #2563eb sits one step below --accent-blue (#3b82f6) in luminosity,
+   giving it intentional weight without relying on a gradient halo. */
 .btn-add {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  background: linear-gradient(135deg, var(--accent-blue), var(--accent-violet));
+  background: #2563eb;
   color: #fff;
   border: none;
   border-radius: var(--radius-sm);
@@ -281,17 +284,29 @@ body {
   transition: var(--transition);
   white-space: nowrap;
   font-family: var(--font);
-  box-shadow: 0 2px 12px rgba(59, 130, 246, 0.3);
+  /* Two-layer shadow: ambient depth + subtle colour echo */
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.1) inset,
+    0 2px 8px rgba(0, 0, 0, 0.45);
 }
 
 .btn-add:hover {
+  background: #1d4ed8;        /* one stop darker — no brightness filter */
   transform: translateY(-1px);
-  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.45);
-  filter: brightness(1.1);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.1) inset,
+    0 4px 14px rgba(0, 0, 0, 0.5);
 }
 
 .btn-add:active {
+  background: #1e40af;        /* pressed: darkest stop */
   transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+}
+
+.btn-add:focus-visible {
+  outline: 2px solid rgba(59, 130, 246, 0.6);
+  outline-offset: 2px;
 }
 
 .table-wrap {
@@ -360,13 +375,17 @@ body {
   white-space: nowrap;
 }
 
+/* Destructive tertiary — tinted rose ghost
+   Low-fill tint keeps it contextually clear (danger) without
+   screaming. No scale transform — scale-on-hover is distracting
+   for destructive actions; a simple border intensify is enough. */
 .btn-delete {
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
-  background: rgba(244, 63, 94, 0.1);
+  background: rgba(244, 63, 94, 0.08);
   color: var(--accent-rose);
-  border: 1px solid rgba(244, 63, 94, 0.2);
+  border: 1px solid rgba(244, 63, 94, 0.22);
   border-radius: var(--radius-sm);
   padding: 0.25rem 0.65rem;
   font-size: 0.78rem;
@@ -377,9 +396,19 @@ body {
 }
 
 .btn-delete:hover {
-  background: rgba(244, 63, 94, 0.22);
-  border-color: rgba(244, 63, 94, 0.45);
-  transform: scale(1.04);
+  background: rgba(244, 63, 94, 0.16);
+  border-color: rgba(244, 63, 94, 0.4);
+}
+
+.btn-delete:active {
+  background: rgba(244, 63, 94, 0.24);
+  border-color: rgba(244, 63, 94, 0.55);
+  transform: translateY(1px);
+}
+
+.btn-delete:focus-visible {
+  outline: 2px solid rgba(244, 63, 94, 0.5);
+  outline-offset: 2px;
 }
 
 .empty-state {
@@ -448,7 +477,8 @@ body {
 
 .budget-field {
   flex: 1;
-  min-width: 0; /* allows field to shrink below intrinsic size, yielding space to the button */
+  min-width: 0;
+  /* allows field to shrink below intrinsic size, yielding space to the button */
   background: transparent;
   border: none;
   color: var(--text-primary);
@@ -463,8 +493,10 @@ body {
 }
 
 .btn-save {
-  flex-shrink: 0;       /* never let the button collapse when the container narrows */
-  white-space: nowrap;  /* prevent text wrapping that would break button height */
+  flex-shrink: 0;
+  /* never let the button collapse when the container narrows */
+  white-space: nowrap;
+  /* prevent text wrapping that would break button height */
   background: var(--accent-blue);
   color: #fff;
   border: none;
@@ -573,6 +605,7 @@ body {
   align-items: center;
   gap: 0.65rem;
 }
+
 .modal-icon {
   display: inline-flex;
   align-items: center;
@@ -683,9 +716,12 @@ body {
   gap: 0.75rem;
 }
 
+/* Secondary — neutral ghost with crisper border
+   Pure neutral palette: no hue, no fill, defined only by its border.
+   Sits below primary and above nothing — dismissive, not invisible. */
 .btn-cancel {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid var(--border-glass);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   color: var(--text-secondary);
   border-radius: var(--radius-sm);
   padding: 0.5rem 1.1rem;
@@ -696,14 +732,28 @@ body {
 }
 
 .btn-cancel:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.25);
   color: var(--text-primary);
 }
 
+.btn-cancel:active {
+  background: rgba(255, 255, 255, 0.03);
+  transform: translateY(1px);
+}
+
+.btn-cancel:focus-visible {
+  outline: 2px solid rgba(148, 163, 184, 0.5);
+  outline-offset: 2px;
+}
+
+/* Primary modal CTA — mirrors .btn-add, same solid Blueprint Blue
+   Using the same hue token as .btn-add ensures systemic consistency;
+   size/weight differences alone carry the semantic distinction. */
 .btn-submit {
   display: inline-flex;
   align-items: center;
-  background: linear-gradient(135deg, var(--accent-blue), var(--accent-violet));
+  background: #2563eb;
   color: #fff;
   border: none;
   border-radius: var(--radius-sm);
@@ -713,12 +763,28 @@ body {
   cursor: pointer;
   transition: var(--transition);
   font-family: var(--font);
-  box-shadow: 0 2px 12px rgba(59, 130, 246, 0.3);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.1) inset,
+    0 2px 8px rgba(0, 0, 0, 0.45);
 }
 
 .btn-submit:hover {
-  filter: brightness(1.1);
+  background: #1d4ed8;
   transform: translateY(-1px);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.1) inset,
+    0 4px 14px rgba(0, 0, 0, 0.5);
+}
+
+.btn-submit:active {
+  background: #1e40af;
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+}
+
+.btn-submit:focus-visible {
+  outline: 2px solid rgba(59, 130, 246, 0.6);
+  outline-offset: 2px;
 }
 
 .app-toast {
